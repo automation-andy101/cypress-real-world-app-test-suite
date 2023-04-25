@@ -3,6 +3,7 @@ class LoginPage {
     elements = {
         usernameInput: () => cy.get('[data-test="signin-username"]'),
         passwordInput: () => cy.get('[data-test="signin-password"]'),
+        signupLink: () => cy.get('[data-test="signup"]'),
         signinBtn: () => cy.get('[data-test="signin-submit"]'),
     }
 
@@ -16,6 +17,10 @@ class LoginPage {
 
     clickSigninBtn() {
         this.elements.signinBtn().click();
+    }
+
+    clickSignupLink() {
+        this.elements.signupLink().click();
     }
 }
 

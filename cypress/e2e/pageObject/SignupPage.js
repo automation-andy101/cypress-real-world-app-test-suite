@@ -6,6 +6,13 @@ class SignupPage {
         usernameInput: () => cy.get('[data-test="signup-username"]'),
         passwordInput: () => cy.get('[data-test="signup-password"]'),
         confirmPasswordInput: () => cy.get('[data-test="signup-confirmPassword"]'),
+
+        firstNameInputError: () => cy.get('#firstName-helper-text'),
+        lastNameInputError: () => cy.get('#lastName-helper-text'),
+        usernameInputError: () => cy.get('#username-helper-text'),
+        passwordInputError: () => cy.get('#password-helper-text'),
+        confirmPasswordInputError: () => cy.get('#confirmPassword-helper-text'),
+
         signupBtn: () => cy.get('[data-test="signup-submit"]'),
     }
 
@@ -32,6 +39,8 @@ class SignupPage {
     clickSignupBtn() {
         this.elements.signupBtn().click();
     }
+
+
 
 }
 

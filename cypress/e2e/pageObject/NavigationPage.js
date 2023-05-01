@@ -17,8 +17,8 @@ class NavigationPage {
         this.elements.myAccountSidebarMenuOption().click();
     }
 
-    selectMyBankAccountsSidebarMenuOption() {
-        this.elements.myBankAccountsSidebarMenuOption().click();
+    selectBankAccountsSidebarMenuOption() {
+        this.elements.bankAccountsSidebarMenuOption().click();
     }
 
     selectNotificationSidebarMenuOption() {

@@ -10,9 +10,9 @@ class BankAccountsPage {
     }
 
     clickNewBankAccountButton() {
-        this.elements.bankAccountsCreateBtn().click();
+        this.elements.bankAccountsCreateBtn().click({force: true});
     }
-
+    
     enterBankName(bankName) {
         this.elements.bankNameInput().type(bankName);
     }
@@ -27,6 +27,22 @@ class BankAccountsPage {
 
     clickSaveButton() {
         this.elements.saveBtn().click();
+    }
+
+    searchForBankAccountName(name) {
+        cy.get('[data-test*="bankaccount-list-item"] > div > div > p').then($els => {
+                const texts = [...$els].map(el => el.innerText) 
+                const found = texts.includes(name)
+                return found
+            })
+            .then(found => {
+                expect(found).to.equal(true);
+                if (!found) {
+                    cy.log("NOT FOUND!!!");
+                } else {
+                    cy.log("FOUND THE ITEM!!!");
+                }
+            })
     }
 
 }

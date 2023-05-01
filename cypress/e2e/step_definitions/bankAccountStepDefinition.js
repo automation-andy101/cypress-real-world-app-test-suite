@@ -29,7 +29,6 @@ When('user submits new bank account details', () => {
 })
 
 Then('new bank account is successfully created', () => {
-    // signupPage.elements.firstNameInputError().should("be.visible").and("contain", "First Name is required");
     bankAccountsPage.searchForBankAccountName("Cypress Test Account")
 })
 

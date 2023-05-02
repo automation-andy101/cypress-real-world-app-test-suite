@@ -6,7 +6,11 @@ class BankAccountsPage {
         routingNumberInput: () => cy.get('[data-test="bankaccount-routingNumber-input"]'),
         accountNumberInput: () => cy.get('[data-test="bankaccount-accountNumber-input"]'),
         saveBtn: () => cy.get('[data-test="bankaccount-submit"]'),
-        listOfAccounts: () => cy.get('[data-test="bankaccount-list"]')
+        listOfAccounts: () => cy.get('[data-test="bankaccount-list"]'),
+        deleteAccountBtn: () => cy.get('[data-test="bankaccount-delete"]'),
+        bankNameInputError: () => cy.get('#bankaccount-bankName-input-helper-text'),
+        routingNumberInputError: () => cy.get('#bankaccount-routingNumber-input-helper-text'),
+        accountNumberInputError: () => cy.get('#bankaccount-accountNumber-input-helper-text')
     }
 
     clickNewBankAccountButton() {
@@ -42,6 +46,17 @@ class BankAccountsPage {
                 } else {
                     cy.log("FOUND THE ITEM!!!");
                 }
+            })
+    }
+
+    searchForBankAccountAndDelete(name) {
+        cy.get('[data-test*="bankaccount-list-item"] > div > div > p').then($els, $index => {
+                const texts = [...$els].map(el => el.innerText) 
+                const found = texts.includes(name)
+                return $index
+            })
+            .then($index => {
+                this.elements.deleteAccountBtn().eq($index).click();
             })
     }
 

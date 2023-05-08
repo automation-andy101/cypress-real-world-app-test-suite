@@ -1,4 +1,6 @@
 class BankAccountsPage {
+
+    // indexOfDeletedElement = 0;
    
     elements = {
         bankAccountsCreateBtn: () => cy.get('[data-test="bankaccount-new"]'),
@@ -50,14 +52,16 @@ class BankAccountsPage {
     }
 
     searchForBankAccountAndDelete(name) {
-        cy.get('[data-test*="bankaccount-list-item"] > div > div > p').then($els, $index => {
-                const texts = [...$els].map(el => el.innerText) 
-                const found = texts.includes(name)
-                return $index
-            })
-            .then($index => {
-                this.elements.deleteAccountBtn().eq($index).click();
-            })
+        cy.get('[data-test*="bankaccount-list-item"] > div > div > p').each(($el, index, $list) => {
+            let getText;
+            getText = $el.text();
+
+            if (getText.includes(name) && !(getText.includes(name + " (Deleted)"))) {
+                cy.log("DO STUFF!!!!!!")
+                cy.xpath(`/html/body/div/div/main/div[2]/div/div/div/ul/li[${index + 1}]/div/div[2]/button`).click({force: true});
+                return false;
+            }
+        })
     }
 
 }

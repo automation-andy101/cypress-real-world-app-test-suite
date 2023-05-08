@@ -26,7 +26,7 @@ Given('a new bank account has been created', () => {
     navigationPage.selectBankAccountsSidebarMenuOption();
     bankAccountsPage.clickNewBankAccountButton();
     cy.location("pathname").should("eq", "/bankaccounts/new");
-    bankAccountsPage.enterBankName("NEW Cypress Test Account")
+    bankAccountsPage.enterBankName("NEW Cypress Test Account for DELETE123")
     bankAccountsPage.enterRoutingNumber("123456789")
     bankAccountsPage.enterAccountNumber("987654321")
     bankAccountsPage.clickSaveButton();
@@ -52,7 +52,7 @@ When('user enters invalid form values', () => {
 })
 
 When('user clicks the Delete button for the previously created bank account', () => {
-    bankAccountsPage.searchForBankAccountAndDelete("NEW Cypress Test Account")
+    bankAccountsPage.searchForBankAccountAndDelete("NEW Cypress Test Account for DELETE123")
 })
 
 Then('new bank account is successfully created', () => {
@@ -72,5 +72,5 @@ Then('invalid form field errors are visible', () => {
 })
 
 Then('bank account displays Deleted next to its name in the list', () => {
-   
+    bankAccountsPage.searchForBankAccountName("NEW Cypress Test Account for DELETE123 (Deleted)");
 })

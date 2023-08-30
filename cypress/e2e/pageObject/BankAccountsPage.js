@@ -57,12 +57,12 @@ class BankAccountsPage {
             getText = $el.text();
 
             if (getText.includes(name) && !(getText.includes(name + " (Deleted)"))) {
-                cy.log("DO STUFF!!!!!!")
                 cy.xpath(`/html/body/div/div/main/div[2]/div/div/div/ul/li[${index + 1}]/div/div[2]/button`).click({force: true});
                 return false;
             }
         })
     }
+
 
 }
 
